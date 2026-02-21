@@ -1,5 +1,5 @@
 /*
-    ABOUT: fixed-size arrays
+    ABOUT: fixed-size array of numbers
 
     An array is a fixed-size,
     sequential collection of elements of the same type

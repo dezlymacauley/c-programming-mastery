@@ -1,0 +1,22 @@
+[
+  {
+    "file": "src/main.c",
+    "arguments": [
+      "clang",
+      "-std=c23",
+      "-isystem",
+      "/usr/include",
+      "-B",
+      "/usr/lib",
+      "-I",
+      "include",
+      "-Wconversion",
+      "-Wunused-variable",
+      "src/main.c",
+      "-o",
+      "bin/main"
+    ],
+    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/09-derived-data-types/topic-02-fixed-sized-array-of-char",
+    "output": "bin/main"
+  }
+]

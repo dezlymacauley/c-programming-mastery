@@ -1,0 +1,5 @@
+# Build outputs
+**/bin/
+
+# clangd (language server) cache
+**/.cache/

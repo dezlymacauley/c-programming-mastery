@@ -1,0 +1,6 @@
+[tools]
+cmake = "4.2.3"
+conan = "2.25.2"
+"conda:clang" = "21.1.8"
+"conda:clang-format" = "21.1.8"
+"conda:make" = "4.4.1"

@@ -1,6 +1,20 @@
 # C Programming Mastery Setup Guide
 _______________________________________________________________________________
 
+## Install `base-devel` (system-wide installation)
+
+This is a package group on Arch Linux that contains essential build tools
+such as `gcc`, `make`, and `binutils`. 
+
+It also pulls in `glibc` as a
+dependency, which provides the C standard library header files (e.g.
+`stdio.h`, `stdlib.h`) that your code and compiler rely on.
+
+```sh
+sudo pacman -S --needed base-devel
+```
+_______________________________________________________________________________
+
 ## Install `clangd` (system-wide installation)
 
 clangd is a language server for both C and C++ code.

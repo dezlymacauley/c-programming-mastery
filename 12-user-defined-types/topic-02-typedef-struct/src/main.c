@@ -1,22 +1,27 @@
 /*
 
-    ABOUT: struct
+    ABOUT: typedef struct
+
+    This is another way of declaring a `struct` in C
+
+    I prefer this style because it makes creating an instance much neater
 
 */
 
-struct employee {
+
+typedef struct {
     int id;
     char firstname[64];
     char lastname[64];
     float income;
     bool is_manager;
-};
+} Employee;
 
 #include <stdio.h>
 
 int main() {
 
-    struct employee employee_01 = {
+    Employee employee_01 = {
         .id = 1,
         .firstname = "Kate",
         .lastname = "Kendal",

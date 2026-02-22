@@ -1,0 +1,22 @@
+[
+  {
+    "file": "src/main.c",
+    "arguments": [
+      "clang",
+      "-std=c23",
+      "-isystem",
+      "/usr/include",
+      "-B",
+      "/usr/lib",
+      "-I",
+      "include",
+      "-Wconversion",
+      "-Wunused-variable",
+      "src/main.c",
+      "-o",
+      "bin/main"
+    ],
+    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/08-basic-function-usage/topic-02-functions-that-return-a-single-element",
+    "output": "bin/main"
+  }
+]

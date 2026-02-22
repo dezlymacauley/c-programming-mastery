@@ -1,0 +1,42 @@
+[
+  {
+    "file": "src/CustomFunctions.c",
+    "arguments": [
+      "clang",
+      "-std=c23",
+      "-isystem",
+      "/usr/include",
+      "-B",
+      "/usr/lib",
+      "-I",
+      "include",
+      "-Wconversion",
+      "-Wunused-variable",
+      "src/CustomFunctions.c",
+      "-o",
+      "bin/main"
+    ],
+    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/08-basic-function-usage/topic-04-functions-and-header-files",
+    "output": "bin/main"
+  },
+  {
+    "file": "src/main.c",
+    "arguments": [
+      "clang",
+      "-std=c23",
+      "-isystem",
+      "/usr/include",
+      "-B",
+      "/usr/lib",
+      "-I",
+      "include",
+      "-Wconversion",
+      "-Wunused-variable",
+      "src/main.c",
+      "-o",
+      "bin/main"
+    ],
+    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/08-basic-function-usage/topic-04-functions-and-header-files",
+    "output": "bin/main"
+  }
+]

@@ -13,14 +13,14 @@
     stored in heap memory.
 */
 
-// #include <print>
-// using std::println;
-//
-// #include <vector>
-// using std::vector;
-
 #include <stddef.h>
-// This is required to use the data type `size_t`
+// <stddef.h> is required to use the data type `size_t`
+
+#include <stdlib.h>
+// <stdlib.h> is required to use the `malloc()` function
+
+#include <stdio.h>
+// <stdio.h> is required to use the `printf()` function
 
 int main() {
 
@@ -33,112 +33,108 @@ int main() {
     // For a dynamic-sized array, the variable is stored on the stack,
     // while the actual elements of the variable are stored on the heap.
 
-    // E.g. A quick detour to C++... 
+    //_________________________________________________________________________
 
-    // In C++ if you wanted to create a dynamic-sized array of numbers 
+    // SECTION: A quick detour to C++...
+
+    // In C++ if you wanted to create a dynamic-sized array of numbers
     // you would import the `#include <vector>` header file,
-    // then use the built-in data structure called `vector` 
-    // by using std::vector<T>.
+    // then use the built-in data structure called `vector`,
+    //
+    // then use `using std::vector;` to bring the `vector` data type into
+    // scope from the C++ standard library,
+    // so that you can just type `vector<T>` to use it,
+    // rather than `std::vector<T>`
     //
     // T is the variable type of each element
-    // in the list.
+    // in the list. So if you wanted a list of `int` elements,
+    // then you would use: vector<int>
 
-    //_________________________________________________________________________
-    
-    // std::vector contains three things:
+    // Here's an example of a vector of 8 elements
+    // vector<int> player_scores{20, 75, 48, 50, 2, 10, 4, 17};
+
+    // The variable player_scores is stored on the stack,
+    // but its elements are stored on the heap.
+
+    // std::vector data structure contains three things:
+    //
     // 1. A pointer, T* (E.g. *int),
     // which contains the memory address of the location of in heap memory,
     // where the actual contents of the elements are stored.
     //
-    // 2. A variable to keep track of the current number of elements (size_t)
-    //
+    // 2. A variable to keep track of the current number of elements in
+    // the vector (size_t)
+    //  size_t (which is an integer with a platform dependent size)
+    //  On a 32 bit system, size_t is 32 bits (4 bytes)
+    //  On a 64 bit system, size_t is 64 bits (8 bytes)
+
     // 3. A variable to keep track of the capacity (size_t)
-    // The capacity is set when you create the list.
+    // The capacity is set when you create the vector.
+    //
     // The capacity is basically the maximum number of elements,
-    // that a dynamic-sized list can store before reallocation happens.
-    // Realocation is basically a request to the the operating system for 
-    // more memory to store more elements. 
-    // After that, the capacity is updated.
-    
+    // that the vector can store before reallocation happens.
+    //
+    // Realocation is basically a request to the the operating system for
+    // more memory so that the vector can store more elements.
+    // After reallocation, the capacity is updated.
+    //
+    // So if the capacity of the vector = 8, that means:
+    // When this vector is created it will be given enough space to store
+    // at least 8 elements
+
     //_________________________________________________________________________
 
-    // In C, there's no built-in vector data structure, 
-    // so you have to create it yourself.
+    // SECTION: Now back to C...
 
+    // In C, there's no built-in vector data structure,
+    // so you have to create this yourself:
+
+    // First initialize the variables
     int* player_scores = nullptr;
-    size_t
-
-    // vector<int> player_scores{20, 75, 48};
-
-    //_________________________________________________________________________
-
-    // SECTION: How to print the number of elements
-
-    // println("There are {} elements in player_scores", player_scores.size());
-    // There are 3 elements in player_scores
+    size_t size = 0;
+    size_t capacity = 0;
 
     //_________________________________________________________________________
 
-    // SECTION: How to print the size of a vector
+    // Next request memory from the operating system
 
-    // println("The size of player_scores is {} bytes", sizeof(player_scores));
-    // The size of player_scores is 24 bytes
+    // I want enough space to store 8 elements,
+    // before reallocation happens.
+    capacity = 8;
 
-    //_________________________________________________________________________
+    // malloc returns `void*`
+    // Which means a pointer to raw memory. Also known as untyped memory.
+    // malloc only allocates, you are in charge of setting the data type.
 
-    // SECTION: Understanding how the size of a vector is made up
+    // The malloc function requires you to enter the number of bytes in
+    // as a size_t data type:
+    //
+    // Number of bytes required for a dynamic-sized list of `int` data types
+    // with an initial capacity of 8 elements can be calculated like this:
+    // capacity * the size of an int in bytes
+    player_scores = malloc(capacity * sizeof(int));
 
-    // NOTE: Unlike a fixed size array the size of a vector is NOT:
-    // The size of each element * number of elements.
-
-    // E.g.
-    // vector<int> player_scores{50, 40, 20};
-
-    // This vector contains 3 elements,
-    // and each element is an int.
-    // The size of an int is 4 bytes.
-
-    // However 4 bytes * 3 elements = 12 bytes
-
-    // However when `sizeof` was used, it showed that the size of the vector,
-    // was actually 24 bytes.
-
-    // So what is taking up the extra 12 bytes?
+    if (player_scores == nullptr) {
+        printf("Error: Failed to allocate memory to player_scores\n");
+        return 1;
+    }
 
     //_________________________________________________________________________
 
-    // SECTION: In C++ a vector stores three things
+    // Add 8 values to player_scores
+    player_scores[0] = 20;
+    player_scores[1] = 75;
+    player_scores[2] = 48;
+    player_scores[3] = 50;
+    player_scores[4] = 2;
+    player_scores[5] = 10;
+    player_scores[6] = 4;
+    player_scores[7] = 17;
 
-    //  1. a pointer (a memory address) to the location of the elements
-    //  in heap memory.
-    //  This is stored in the data type:
-    //  T* (where T is the data type of the elements).
-    // println("1. Pointer size: {} bytes", sizeof(int*));
-    // 8 bytes
-
-    //  2. The current number of elements.
-    //  This is stored in the data type:
-    //  size_t (which is an integer with a platform dependent size)
-    //  On a 32 bit system, size_t is 32 bits (4 bytes)
-    //  On a 64 bit system, size_t is 64 bits (8 bytes)
-    // println("2. size_t = {} bytes", sizeof(size_t));
-
-    //  3. The maximum elements the vector can store before reallocation
-    //  happens.
-    //  This is stored in the data type:
-    //  size_t (which is an integer with a platform dependent size)
-    //  On a 32 bit system, size_t is 32 bits (4 bytes)
-    //  On a 64 bit system, size_t is 64 bits (8 bytes)
-    // println("3. another size_t = {} bytes", sizeof(size_t));
-    // // 8 bytes
-
-    // So 8 bytes + 8 bytes + 8 bytes = 24 bytes
-
-    // And that's why this is 24 bytes
-    // println("The size of player_scores is {} bytes", sizeof(player_scores));
-    // The size of player_scores is 24 bytes
+    // Remember to update the size
+    size = 8;
 
     //_________________________________________________________________________
-
+    
     return 0;
 }

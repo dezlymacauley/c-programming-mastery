@@ -1,5 +1,5 @@
 /*
-    ABOUT: Traditional `for loop`
+    ABOUT: `for loop`
 
     Use this when you know how many times the loop needs to run
 

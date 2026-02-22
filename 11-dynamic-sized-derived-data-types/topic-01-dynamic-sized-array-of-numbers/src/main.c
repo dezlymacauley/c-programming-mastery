@@ -14,13 +14,17 @@
 */
 
 #include <stddef.h>
-// <stddef.h> is required to use the data type `size_t`
+// <stddef.h> is required to use:
+// 1. The data type `size_t`
 
 #include <stdlib.h>
-// <stdlib.h> is required to use the `malloc()` function
+// <stdlib.h> is required to use:
+// 1. The `malloc()` function
+// 2. The `free()` function
 
 #include <stdio.h>
-// <stdio.h> is required to use the `printf()` function
+// <stdio.h> is required to use:
+// 1. The `printf()` function
 
 int main() {
 
@@ -133,6 +137,55 @@ int main() {
 
     // Remember to update the size
     size = 8;
+
+    //_________________________________________________________________________
+
+    // SECTION: How to print each element in the dynamic-sized array
+    // on a new line
+
+    for (size_t i = 0; i < size; i++) {
+        printf("The value at index %zu is: %d\n", i, player_scores[i]);
+    }
+
+    // %zu is the format specifier for the `size_t` data type.
+    // %d is the format specifier for the `int`  data type.
+
+    //_________________________________________________________________________
+   
+    // SECTION: Clean Up
+
+    // Unlike garbage-collected languages that will handle clean up for you
+    // when memory has been allocated from the Heap, 
+    // or Rust which uses ownership and borrowing rules to handle clean up,
+    // in C... you have to handle this yourself.
+
+    //_________________________________________________________________________
+
+    // STEP: 1 => Release the memory allocated on the heap
+
+    // Remember to release the memory that allocated for 
+    // the dynamic-sized array, back to the operating system
+
+    // Think of free as a marker that tells the operating system,
+    // or more specifically, the system allocator that the memory allocated
+    // to a specific memory adress is no longer being used by the program.
+    
+    // The `free()` function accepts the data type `void*`,
+    // which is a pointer of an unspecified data type.
+    // This is makes the `free()` function convinient because it can work
+    // with many kind of pointers like player_scores which 
+    // is an `int*` pointer.
+    free(player_scores);
+
+    //_________________________________________________________________________
+    
+    // STEP: 2 => Set the pointer to nullptr
+
+    // This is done to prevent dangling references.
+
+    // A dangling reference is when you try to use a memory adress that is
+    // no longer in use by the program. 
+    player_scores = nullptr;
 
     //_________________________________________________________________________
     

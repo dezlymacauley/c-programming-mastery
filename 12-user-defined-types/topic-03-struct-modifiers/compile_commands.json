@@ -1,0 +1,22 @@
+[
+  {
+    "file": "src/main.c",
+    "arguments": [
+      "clang",
+      "-std=c23",
+      "-isystem",
+      "/usr/include",
+      "-B",
+      "/usr/lib",
+      "-I",
+      "include",
+      "-Wconversion",
+      "-Wunused-variable",
+      "src/main.c",
+      "-o",
+      "bin/main"
+    ],
+    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/12-user-defined-types/topic-03-struct-modifiers",
+    "output": "bin/main"
+  }
+]

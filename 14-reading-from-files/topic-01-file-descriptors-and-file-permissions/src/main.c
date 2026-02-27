@@ -18,12 +18,18 @@
 // This is required to use:
 // `open()`, `O_RDWR`, `O_CREAT`
 
+#include <stdio.h>
+// This is required to use:
+// `perror()`
+
 int main() {
 
-    // open(filepath, flags separated by this `|` character )
-    int fd = open("./example_one.txt", O_RDWR | O_CREAT, 0644);
-
     //_________________________________________________________________________
+    
+    // SECTION: Creating a file descriptor
+
+    // open(filepath, flags separated by this `|` character )
+    int fd = open("./src/example_one.txt", O_RDWR | O_CREAT, 0644);
 
     // O_RDWR and O_CREAT are flags you pass to the open() system call
     // to control how the file is opened.
@@ -33,12 +39,12 @@ int main() {
     // RD = Reading
     // WR = Writing
 
-    // In simple terms, I want to open the file "./example_one.txt",
+    // In simple terms, I want to open the file "./src/example_one.txt",
     // and I want to be able to read its contents, and modify its contents.
 
     //_________________________________________________________________________
 
-    // O_CREAT means that the file "./example_one.txt" will be created if
+    // O_CREAT means that the file "./src/example_one.txt" will be created if
     // it doesn't exist.
 
     // O_CREAT, 0644 means if the file is created,
@@ -75,7 +81,49 @@ int main() {
 
     //_________________________________________________________________________
 
+    // SECTION: Error handling
 
+    // The `open()` function returns `-1` if it fails to open the file.
+    if (fd == -1) {
+
+        // Print a message to stderr
+        perror("Error: Failed to open the file 'src/example_one.txt'");
+
+        // Exit the program and return `1` to the main function
+        return 1;
+    }
+    
+    //_________________________________________________________________________
+    
+    // SECTION: How to read the permissions of a file from the command line
+    
+    // Note this is `shell scripting`, not bash:
+    //
+    // ls -l example_one.txt
+    //
+    //.rw-r--r-- dezlymacauley dezlymacauley 47 B Fri Feb 27 06:41:46 2026  example_one.txt
+
+    // The current file permissions are `644`
+
+    // I want to remove all permissions for the owner, group, and others
+    // deliberately so that I can check the error handling of this C program
+
+    // chmod 000 src/example_one.txt
+  
+    // If I try to run this C program now, I should get this error:
+    // Error: Failed to open the file 'src/example_one.txt': Permission denied
+    // make: *** [Makefile:15: run] Error 1
+
+    //_________________________________________________________________________
+
+    // To return things back to normal
+
+    // ls - l
+    // .--------- dezlymacauley dezlymacauley 47 B Fri Feb 27 06:41:46 2026  example_one.txt
+
+    // chmod 644 src/example_one.txt
+
+    //_________________________________________________________________________
 
     return 0;
 }

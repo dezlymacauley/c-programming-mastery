@@ -16,7 +16,7 @@
       "-o",
       "bin/main"
     ],
-    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/14-reading-from-files/topic-01-file-descriptors",
+    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/14-reading-from-files/topic-01-file-descriptors-and-file-permissions",
     "output": "bin/main"
   }
 ]

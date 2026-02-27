@@ -52,20 +52,40 @@ int main() {
     //_________________________________________________________________________
 
     // SECTION: How to print the memory address where the string is stored,
-    // or to be more specific, 
-    // the memory address of the first char in the string.
+    // or to be more specific,
+    // the memory address of the first `char` element in the string.
 
     printf(
         "The contents of user_name are stored at the memory address: %p\n",
         (void*)user_name
     );
+    // The contents of user_name are stored at the memory address:
+    // 0x55804ae14022
 
     // What's `(void*)`?
     // The format specifier `%p` in `printf()` is used to print pointers,
     // aka memory addresses. This format specifier needs the data type of
     // the variable that it is printing to be of the type `void*`
 
-    // void
+    // `%p` accepts `void*` so that it can work with any type of pointer.
+
+    //_________________________________________________________________________
+
+    // Changing the name of the variable
+
+    // NOTE: This does not modify the original string.
+    // It simply makes user_name point to a new string literal
+    // "Jackie Chan" in memory.
+
+    user_name = "Jackie Chan";
+
+    printf(
+        "The contents of user_name are now stored at the memory address: %p\n",
+        (void*)user_name
+    );
+
+    // The contents of user_name are now stored at the memory address: 0x55fc51cd1079
+    // The memory address has changed.
 
     //_________________________________________________________________________
 

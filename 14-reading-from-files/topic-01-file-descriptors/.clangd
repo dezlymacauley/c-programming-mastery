@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-std=c23, -Iinclude, -Wconversion, -Wunused-variable ]
+  Add: [-std=c23, -Iinclude, -Wconversion, -Wunused-variable]

@@ -16,7 +16,7 @@
       "-o",
       "bin/main"
     ],
-    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/12-user-defined-types/topic-03-struct-modifiers",
+    "directory": "/home/dezlymacauley/workspace/github-repos/c-programming-mastery/14-reading-from-files/topic-01-file-descriptors",
     "output": "bin/main"
   }
 ]

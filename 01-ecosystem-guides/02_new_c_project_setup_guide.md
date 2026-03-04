@@ -1,6 +1,16 @@
 # New C Project Setup Guide
 _______________________________________________________________________________
 
+## Global Setup
+
+1. Install mise
+
+2. Install clang
+
+_______________________________________________________________________________
+
+## Local Setup
+
 Create the project directory
 ```sh
 mkdir name-of-project
@@ -16,15 +26,37 @@ _______________________________________________________________________________
 
 Create the project structure
 ```sh
-mkdir bin/
-mkdir src/
-mkdir include/
-touch src/main.c
-touch .clang-format
-touch .clangd
-touch Makefile
+mkdir bin include obj src
+touch .clang-format .clangd \
+.gitignore README.md \
+mise.toml Makefile src/main.c
+```
+
+```
+.
+├── bin
+├── .clangd
+├── .clang-format
+├── .gitignore
+├── include
+├── Makefile
+├── mise.toml
+├── obj
+├── README.md
+└── src
+    └── main.c
 ```
 _______________________________________________________________________________
+
+Install the local project dependencies:
+
+First give mise permission
+```sh
+mise trust
+```
+
+_______________________________________________________________________________
+
 
 ### Configure the project
 _______________________________________________________________________________
